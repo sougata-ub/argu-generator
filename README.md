@@ -23,8 +23,8 @@ Effective argumentation is essential towards a purposeful conversation with a sa
 3. ArgU Stance model: https://argu-files.s3.amazonaws.com/argu_stance_generator_model.pt, log file: https://argu-files.s3.amazonaws.com/argu_stance_generator_log.pkl
 4. ArgU Scheme model: https://argu-files.s3.amazonaws.com/argu_scheme_generator_model.pt, log file: https://argu-files.s3.amazonaws.com/argu_scheme_generator_log.pkl
 
-To perform inference just load the model's log file and weights
-
+### Training and Inference
+To perform inference just load the model's log file and weights.
 ```
 configurations = pickle.load(open("<log file>", "rb))["configurations"]
 configurations["train_distributed"] = False
@@ -36,6 +36,11 @@ state_dict = {k[7:]: v for k, v in state_dict.items()}
 trainer.model.load_state_dict(state_dict)
 trainer.model.eval()
 pc_test_scores = trainer.generate_response_V2(keys_dict["pc_basn"][0]["test"], rouge)
+```
+
+To train the models from scratch you can use a command like below. Refer to the respective model's log file for a detailed configuration. Additionally check out the `mappings.py` and `run_training_models_v2.py` files to know more details of each parameter.
+```
+nohup python -m torch.distributed.run --nnodes=1 --nproc_per_node=2 --master_port "9999" ./run_training_models_v2.py --num_workers 2 --batch_size 24 --num_epochs 40 --accumulate 1 --learning_rate 0.00001 --early_stopping 5 --save_results "true" --save_model "true" --stats_csv "<path>/arg_gen_M3_V3_stats_v1.csv" --experiment_number <choose from 0 to 3> --train_distributed "true" --model_type <choose from "fact_span_M1", "span_scheme_M2", "arg_gen_M3_V3"> --mname "facebook/bart-base" --add_special_tokens "true" --find_unused_parameters "false" --run_inference "true" --force_save_model "false" --save_model "true" --pc_model_name "<provide a pre-trained model if any>" > log0.txt 2>&1 &
 ```
 ### Contact:
 1. Please create and submit an issue if you face any difficulties.
