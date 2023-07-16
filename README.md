@@ -16,7 +16,50 @@ Effective argumentation is essential towards a purposeful conversation with a sa
 2. ArgSpan and ArgSpanScheme training and testing splits: https://argu-files.s3.amazonaws.com/arg_span_and_scheme_data_keys.pkl
 3. ArgU data: https://argu-files.s3.amazonaws.com/argu_generator_data.pkl
 4. ArgU training and testing splits: https://argu-files.s3.amazonaws.com/argu_generator_keys.pkl
-   
+
+### ArgSpan and ArgSpanScheme Data Dictionary
+- id: Unique id.
+- text: Argument text.
+- Statement_[0 to 6]: Available Facts/Concepts.
+- label: Span annotation.
+- label_type: Span annotation golden or silver.
+- stance: pro or con stance.
+- idiom: Argument schemes across 7 classes
+- lbl_bio: BIO labels of Argument Text.
+- model_1_format: Example in ArgSpan training format.
+  - text: Roberta formatted argument text.
+  - fact: Roberta formatted argument facts. 
+  - labels: BIO labels for each input fact. The labels are assigned -1 if input fact is absent. 
+  - text_ids: Roberta encoded argument text. 
+  - fact_ids: Roberta encoded facts. 
+  - tag:
+    - train: golden annotated sample used for training.
+    - test: golden annotated sample used for testing. 
+    - inference: model predicted labels (silver annotation).
+- model_2_format: Example in ArgSpanScheme training format.
+  - text_input_ids: Roberta formatted argument text. 
+  - bio_labels: BIO span labels. 
+  - lbl_idiom_new: Argument schemes across 6 classes: 0: 'from consequence', 1: 'from source authority', 2: 'from source knowledge', 3: 'goal from means/means for goal', 4: 'other', 5: 'rule or principle'. 
+
+### ArgU Generator Data Dictionary
+- index: unique id.
+- topic: topic of the argument.
+- stance: pro/con stace of the argument.
+- sent: argument text.
+- dataset: source dataset.
+- basn_lbl: argument scheme of the argument. One of 'goal from means/means for goal', 'from consequence', 'rule or principle', 'from source authority', 'from source knowledge'.
+- clean_sent: cleansed and normalized argument text.  
+- sent_var: the target template from the argument text.
+- var_map: the variable to argument span (fact/concept) mapping for the template.
+- span_map_rev: mapping from the identified fact/concept argument span to the normalized set of facts/concepts from the entire corpus.
+
+- model_3_format
+  - in_dict: relevant input data fields used during model training.
+  - out_dict: relevant output data fields used during model training.
+  - ctrl: control codes used during model training.
+  - V2_[0 to 3]: encoder and decoder ids used by each model architecture: 0:mono, 1:dual, 2:only stance, 3: only scheme.
+
+
 ### Models and Configuration Files:
 1. ArgU Mono model: https://argu-files.s3.amazonaws.com/argu_mono_generator_model.pt, log file: https://argu-files.s3.amazonaws.com/argu_mono_generator_log.pkl
 2. ArgU Dual model: https://argu-files.s3.amazonaws.com/argu_dual_generator_model.pt, log file: https://argu-files.s3.amazonaws.com/argu_dual_generator_log.pkl
