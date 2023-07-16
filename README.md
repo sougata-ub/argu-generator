@@ -65,6 +65,8 @@ Effective argumentation is essential towards a purposeful conversation with a sa
 2. ArgU Dual model: https://argu-files.s3.amazonaws.com/argu_dual_generator_model.pt, log file: https://argu-files.s3.amazonaws.com/argu_dual_generator_log.pkl
 3. ArgU Stance model: https://argu-files.s3.amazonaws.com/argu_stance_generator_model.pt, log file: https://argu-files.s3.amazonaws.com/argu_stance_generator_log.pkl
 4. ArgU Scheme model: https://argu-files.s3.amazonaws.com/argu_scheme_generator_model.pt, log file: https://argu-files.s3.amazonaws.com/argu_scheme_generator_log.pkl
+5. ArgSpan model: https://argu-files.s3.amazonaws.com/arg_span_model.pt, log file: https://argu-files.s3.amazonaws.com/arg_span_log.pkl
+6. ArgSpanScheme model: https://argu-files.s3.amazonaws.com/arg_span_scheme_model.pt, log file: https://argu-files.s3.amazonaws.com/arg_span_scheme_log.pkl
 
 ### Training and Inference
 To perform inference just load the model's log file and weights.
