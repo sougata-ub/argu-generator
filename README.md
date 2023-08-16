@@ -3,7 +3,7 @@
 
 This is the implementation of the paper:
 
-## [**ArgU: A Controllable Factual Argument Generator**]([https://aclanthology.org/2022.nlp4convai-1.16/](https://aclanthology.org/2023.acl-long.466.pdf)). 
+## [**ArgU: A Controllable Factual Argument Generator**](https://aclanthology.org/2023.acl-long.466.pdf). 
 [**Sougata Saha**](https://sougata-ub.github.io), [**Rohini Srihari**](https://www.acsu.buffalo.edu/~rohini/) 
 
 Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics. Volume 1: Long Papers, pages 8373–8388. July 9-14, 2023 (ACL 2023)
